@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>前端学习路线(二) | Mercedes</title><meta name="keywords" content="前端学习经验"><meta name="author" content="小鱼"><meta name="copyright" content="小鱼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言哈喽哇，小伙伴们，在上文《前端学习路线一》中，我们学习了什么是前端以及前端岗位需要做那些事情，还有如何入门前端，学习了前端基础三大件 HTML CSS JS, 那么在本文当中我们将会接着上文往下拓展，延伸 ~  本文我们将会学习 JavaScript 更为全面的基础知识和最新的 JavaScript 语法： ES6。因为在前端基础当中 JavaScript 和 ES6 是重中之重！在最后呢，我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端学习路线(二)">
+<meta property="og:url" content="http://112.124.32.18:99/2023/01/27/mine/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AF%87(%E4%BA%8C)/index.html">
+<meta property="og:site_name" content="Mercedes">
+<meta property="og:description" content="前言哈喽哇，小伙伴们，在上文《前端学习路线一》中，我们学习了什么是前端以及前端岗位需要做那些事情，还有如何入门前端，学习了前端基础三大件 HTML CSS JS, 那么在本文当中我们将会接着上文往下拓展，延伸 ~  本文我们将会学习 JavaScript 更为全面的基础知识和最新的 JavaScript 语法： ES6。因为在前端基础当中 JavaScript 和 ES6 是重中之重！在最后呢，我">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://112.124.32.18:99/img/bg13.jpg">
+<meta property="article:published_time" content="2023-01-27T13:58:00.000Z">
+<meta property="article:modified_time" content="2023-04-10T06:52:10.025Z">
+<meta property="article:author" content="小鱼">
+<meta property="article:tag" content="前端学习经验">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://112.124.32.18:99/img/bg13.jpg"><link rel="shortcut icon" href="/img/1.jpg"><link rel="canonical" href="http://112.124.32.18:99/2023/01/27/mine/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AF%87(%E4%BA%8C)/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端学习路线(二)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-10 14:52:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style type="text/css">#toggle-sidebar {bottom: 80px}</style><link rel="stylesheet" href="//at.alicdn.com/t/font_3159787_2yw98e7tidb.css"><style type="text/css">.vcard {width: 100%} .vquote .vcard {margin: 0px}</style><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/talk/"><i class="fa-fw fas fa-video"></i><span> 朋友圈</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> MyFriends</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/bg13.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mercedes</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/talk/"><i class="fa-fw fas fa-video"></i><span> 朋友圈</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> MyFriends</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">前端学习路线(二)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-27T13:58:00.000Z" title="发表于 2023-01-27 21:58:00">2023-01-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-10T06:52:10.025Z" title="更新于 2023-04-10 14:52:10">2023-04-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%BB%8F%E9%AA%8C/">前端学习经验</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="前端学习路线(二)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>哈喽哇，小伙伴们，在上文《<a target="_blank" rel="noopener" href="http://smallfish.space/2023/01/17/mine/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AF%87(%E4%B8%80)/">前端学习路线一</a>》中，我们学习了什么是前端以及前端岗位需要做那些事情，还有如何入门前端，学习了前端基础三大件 HTML CSS JS, 那么在本文当中我们将会接着上文往下拓展，延伸 ~</p>
+<blockquote>
+<p>本文我们将会学习 JavaScript 更为全面的基础知识和最新的 JavaScript 语法： ES6。因为在前端基础当中 JavaScript 和 ES6 是重中之重！在最后呢，我们再把 git 这个工具的用法学习一下，学完上文和本文的所有内容之后，才算真正的前端入门~</p>
+</blockquote>
+<h1 id="一-JavaScript-基础"><a href="#一-JavaScript-基础" class="headerlink" title="一. JavaScript 基础"></a>一. JavaScript 基础</h1><blockquote>
+<p>JavaScript 的重点在于许多底层概念，重点！我大概将尽可能多的重点单独拿出来并附带相关讲解文章或者视频，因篇幅有限，在此每个知识点都只放一个连接，大家可以自行寻找其他文章，或者等这两天交流群建好了，会在群里分享一些。</p>
+</blockquote>
+<ol>
+<li><p>作用域：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7050484619715543047">https://juejin.cn/post/7050484619715543047</a></p>
+</li>
+<li><p>作用域进阶： <a target="_blank" rel="noopener" href="https://juejin.cn/post/7053732933495947301">https://juejin.cn/post/7053732933495947301</a></p>
+</li>
+<li><p>变量提升： <a target="_blank" rel="noopener" href="https://juejin.cn/post/7076811474055725087">https://juejin.cn/post/7076811474055725087</a></p>
+</li>
+<li><p>预编译： <a target="_blank" rel="noopener" href="https://juejin.cn/post/7083057939447021605">https://juejin.cn/post/7083057939447021605</a></p>
+</li>
+<li><p>闭包： <a target="_blank" rel="noopener" href="https://juejin.cn/post/6937469222251560990">https://juejin.cn/post/6937469222251560990</a></p>
+</li>
+<li><p>this：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903746984476686">https://juejin.cn/post/6844903746984476686</a></p>
+</li>
+<li><p>继承：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7112302537985753118">https://juejin.cn/post/7112302537985753118</a></p>
+</li>
+<li><p>事件循环：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6992167223523541023">https://juejin.cn/post/6992167223523541023</a></p>
+</li>
+<li><p>数据类型：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7008332322101526565">https://juejin.cn/post/7008332322101526565</a></p>
+</li>
+<li><p>懒加载：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903614138286094">https://juejin.cn/post/6844903614138286094</a></p>
+</li>
+</ol>
+<p>除此之外，强烈建议大家去看《你不知道的 javascript》 这本书，需要电子版的小伙伴们后期可以进群，我会在群里分享。</p>
+<p>除了以上列出来的十点之外，还有很多其他的小点，在此我就不一一列举了，大家可以在相关平台上搜到。</p>
+<p>再 b 站看了半天，真的很少有全面精简干练的 javascript 基础课程，要么是大几百集的视频，要么是讲的不是重点，终于找到一个蛮不错的视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1x441167iH?p=1&amp;vd_source=f46700679cdee12fe72e5203b34fc6b8">https://www.bilibili.com/video/BV1x441167iH?p=1&amp;vd_source=f46700679cdee12fe72e5203b34fc6b8</a> 这个里面包含了以上列出来的一些知识点，有助于看文章！看个人习惯和时间条件。</p>
+<h1 id="二-ES6"><a href="#二-ES6" class="headerlink" title="二. ES6"></a>二. ES6</h1><h3 id="1-什么是-ES6？"><a href="#1-什么是-ES6？" class="headerlink" title="1. 什么是 ES6？"></a>1. 什么是 ES6？</h3><blockquote>
+<p>划重点！ES6 也是重中之重！一定要学好！</p>
+</blockquote>
+<p>ECMAScript 6.0（以下简称 ES6）是 JavaScript 语言的下一代标准，已经在 2015 年 6 月正式发布了。它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。</p>
+<p>简洁的说，es6 就是 javascript 的最新版本，增加了许多新的功能，拓展了很多原有的技术，例如新增的一些对象方法，数字方法等，用来适应日益复杂的前端需求。</p>
+<h3 id="2-怎么学-es6？"><a href="#2-怎么学-es6？" class="headerlink" title="2. 怎么学 es6？"></a>2. 怎么学 es6？</h3><p>在此我只推荐并且强力推荐阮一峰老师的 ES6，需要电子版的小伙伴们可以自行搜索也可以进交流群自取。</p>
+<h1 id="三-Git"><a href="#三-Git" class="headerlink" title="三. Git"></a>三. Git</h1><blockquote>
+<p>在第一篇文章当中我们大概的介绍了一下什么是 git，那么在这里我们就可以系统性的学习一下 git，因为可以说在整个前端生涯中，这都是离不开的工具！</p>
+</blockquote>
+<h3 id="1-什么是-git？"><a href="#1-什么是-git？" class="headerlink" title="1. 什么是 git？"></a>1. 什么是 git？</h3><p>Git（读音为/gɪt/）是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。 Linus Torvalds ，这个人我相信大家都知道吧，开源 Linux 系统的发明人。如今，你看到的大部分服务器其实都是运行在 Linux 系统上，令人感到称叹的是，这位大神级别的程序员不仅创造了 Linux 系统。那 Linux 的代码是如何管理的呢？2002 年之前，世界各地的志愿者把源代码文件通过 diff 的方式发给 Linus，然后由 Linus 本人通过手工方式合并代码！要知道，当时的 Linux 的代码量已经很大了，通过人工管理的方式，一是容易出错，二是效率低。于是 Linus 选择了一个商业的版本控制系统 BitKeeper，BitKeeper 的东家 BitMover 公司出于人道主义精神，授权 Linux 社区免费使用这个版本控制系统。最后，出于某种原因，BitMover 公司收回了 Linux 社区的免费使用权，于是 Linus 花了两周时间自己用 C 语言 写了一个分布式版本控制系统，这就是 Git 的由来了。</p>
+<p>以上介绍出自：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6974184935804534815">https://juejin.cn/post/6974184935804534815</a></p>
+<h3 id="2-怎么学-git？"><a href="#2-怎么学-git？" class="headerlink" title="2. 怎么学 git？"></a>2. 怎么学 git？</h3><p>推荐文章：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6974184935804534815">https://juejin.cn/post/6974184935804534815</a></p>
+<p>推荐视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1k34y1e7Mf/?spm_id_from=333.999.0.0&amp;vd_source=f46700679cdee12fe72e5203b34fc6b8">https://www.bilibili.com/video/BV1k34y1e7Mf/?spm_id_from=333.999.0.0&amp;vd_source=f46700679cdee12fe72e5203b34fc6b8</a></p>
+<p>这个视频我真的强推！我也没看完，大概看了一半，真的讲的很好！很 nice！有时间可以看看！</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文主要是针对 JS 和 ES6 这两个重点内容进行拆分讲解，因为真的很重要！然后把 git 较为全面的系统学习教程和视频推荐了一下，小伙伴们按照这些文章和视频还有基本路线学的话，应该是很全面很系统的。</p>
+<p>后续如果需要对某一个知识点或者某一块内容进行详细讲解的话，也可以私信我或者评论区留言，有时间的话我都会专门写一篇文章来讲解，因为这个系列主要是对整个前端学习路线的统筹讲解，所以不会细到知识点，大家理解一下, 推荐的文章和视频都是看过一些觉得还不错的，适合大家学习的~</p>
+<p>最后，感谢小伙伴们的支持！大家有建议和反馈可以给我私信或者留言，这个系列如果反响还好的话，会接着更新下去！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">小鱼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://112.124.32.18:99/2023/01/27/mine/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AF%87(%E4%BA%8C)/">http://112.124.32.18:99/2023/01/27/mine/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AF%87(%E4%BA%8C)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://112.124.32.18:99" target="_blank">Mercedes</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%BB%8F%E9%AA%8C/">前端学习经验</a></div><div class="post_share"><div class="social-share" data-image="/img/bg13.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/9.jpg" target="_blank"><img class="post-qr-code-img" src="/img/9.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/03/unit/%E5%88%9D%E8%AF%86%E5%8D%95%E6%B5%8B/"><img class="prev-cover" src="/img/bg12.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">初识单测</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/17/mine/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AF%87(%E4%B8%80)/"><img class="next-cover" src="/img/bg13.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">前端学习路线(一)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/01/17/mine/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AF%87(%E4%B8%80)/" title="前端学习路线(一)"><img class="cover" src="/img/bg13.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-17</div><div class="title">前端学习路线(一)</div></div></a></div><div><a href="/2023/05/23/mine/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AF%87(%E4%B8%89)/" title="前端学习路线(三)"><img class="cover" src="/img/bg13.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-23</div><div class="title">前端学习路线(三)</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-JavaScript-%E5%9F%BA%E7%A1%80"><span class="toc-number">2.</span> <span class="toc-text">一. JavaScript 基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-ES6"><span class="toc-number">3.</span> <span class="toc-text">二. ES6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF-ES6%EF%BC%9F"><span class="toc-number">3.0.1.</span> <span class="toc-text">1. 什么是 ES6？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%80%8E%E4%B9%88%E5%AD%A6-es6%EF%BC%9F"><span class="toc-number">3.0.2.</span> <span class="toc-text">2. 怎么学 es6？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-Git"><span class="toc-number">4.</span> <span class="toc-text">三. Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF-git%EF%BC%9F"><span class="toc-number">4.0.1.</span> <span class="toc-text">1. 什么是 git？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%80%8E%E4%B9%88%E5%AD%A6-git%EF%BC%9F"><span class="toc-number">4.0.2.</span> <span class="toc-text">2. 怎么学 git？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 小鱼</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a  target="_blank" rel="noopener" href="http://beian.miit.gov.cn">赣ICP备2022000963号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'LM9Y6HlevqNlrrVeF9Mbadg6-MdYXbMMI',
+      appKey: '1yB8S3wvOq2gPniXYl2blEnj',
+      avatar: 'monsterid',
+      serverURLs: 'https://lm9y6hle.api.lncldglobal.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7650221472" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="小鱼,想买,718" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>浅谈 Koa 与 Express 的异同 | Mercedes</title><meta name="keywords" content="Node"><meta name="author" content="小鱼"><meta name="copyright" content="小鱼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 两者的联系 Express 和 Koa 都是出自 TJ Holowaychuk 大神之手。  Express 是一个基于 Node.js 平台的 web 应用开发框架。而 Koa 则是 Express 的 升级版 Koa 诞生之初正值 Nodejs 推出 async&#x2F;await 语法之时， Koa 采用这种新的语法特性，丢弃回调函数，实现了了一个轻量优雅的 web 后端框架。  两者都采用中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈 Koa 与 Express 的异同">
+<meta property="og:url" content="http://112.124.32.18:99/2022/11/24/node/%E6%B5%85%E8%B0%88%20Koa%20%E5%92%8C%20Express%20%E7%9A%84%E5%BC%82%E5%90%8C/index.html">
+<meta property="og:site_name" content="Mercedes">
+<meta property="og:description" content="1. 两者的联系 Express 和 Koa 都是出自 TJ Holowaychuk 大神之手。  Express 是一个基于 Node.js 平台的 web 应用开发框架。而 Koa 则是 Express 的 升级版 Koa 诞生之初正值 Nodejs 推出 async&#x2F;await 语法之时， Koa 采用这种新的语法特性，丢弃回调函数，实现了了一个轻量优雅的 web 后端框架。  两者都采用中">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://112.124.32.18:99/img/bg9.jpg">
+<meta property="article:published_time" content="2022-11-24T13:52:45.000Z">
+<meta property="article:modified_time" content="2023-04-10T06:52:10.025Z">
+<meta property="article:author" content="小鱼">
+<meta property="article:tag" content="Node">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://112.124.32.18:99/img/bg9.jpg"><link rel="shortcut icon" href="/img/1.jpg"><link rel="canonical" href="http://112.124.32.18:99/2022/11/24/node/%E6%B5%85%E8%B0%88%20Koa%20%E5%92%8C%20Express%20%E7%9A%84%E5%BC%82%E5%90%8C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '浅谈 Koa 与 Express 的异同',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-10 14:52:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style type="text/css">#toggle-sidebar {bottom: 80px}</style><link rel="stylesheet" href="//at.alicdn.com/t/font_3159787_2yw98e7tidb.css"><style type="text/css">.vcard {width: 100%} .vquote .vcard {margin: 0px}</style><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/talk/"><i class="fa-fw fas fa-video"></i><span> 朋友圈</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> MyFriends</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/bg9.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mercedes</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fas fa-folder-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/talk/"><i class="fa-fw fas fa-video"></i><span> 朋友圈</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> MyFriends</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">浅谈 Koa 与 Express 的异同</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-24T13:52:45.000Z" title="发表于 2022-11-24 21:52:45">2022-11-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-10T06:52:10.025Z" title="更新于 2023-04-10 14:52:10">2023-04-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Node/">Node</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="浅谈 Koa 与 Express 的异同"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-两者的联系"><a href="#1-两者的联系" class="headerlink" title="1. 两者的联系"></a>1. 两者的联系</h1><ol>
+<li><p>Express 和 Koa 都是出自 <a href="https://link.juejin.cn/?target=https://github.com/tj">TJ Holowaychuk</a> 大神之手。</p>
+</li>
+<li><p>Express 是一个基于 Node.js 平台的 web 应用开发框架。而 Koa 则是 Express 的 <code>升级版</code> Koa 诞生之初正值 Nodejs 推出 <code>async/await</code> 语法之时， Koa 采用这种新的语法特性，丢弃回调函数，实现了了一个轻量优雅的 web 后端框架。</p>
+</li>
+<li><p>两者都采用中间件方式进行开发，并且相关 api 基本是大同小异的。</p>
+</li>
+</ol>
+<hr>
+<h1 id="2-二者的区别"><a href="#2-二者的区别" class="headerlink" title="2. 二者的区别"></a>2. 二者的区别</h1><h3 id="1-架构设计"><a href="#1-架构设计" class="headerlink" title="1. 架构设计"></a>1. 架构设计</h3><p>Express是一个集合式的框架，自身集成了router，static，views，bodyparse等等常用中间件。这样的设计让开发者能非常快速的搭建一个node后端服务，这个服务功能齐全。可以实现接口服务，静态资源服务，页面服务，甚至文件上传也能实现。但是使用Express就必须引入全部的中间件和功能，不管你有没有用到。</p>
+<p>Koa2的设计思想就是小而美，轻量，插件化设计。只提供最基础的框架，所有功能都通过中间件引入。Koa将Express集成的中间件进行拆分，开发者按需引入即可使用。比如：</p>
+<p>得益于这种设计，用户在选择中间件时有了更多的选项。你可以选择koa提供的中间件(如果koa提供的话)，也可以选择社区或第三方开发的中间件，甚至自己写一个都可以。这在Express上是无法想象的。</p>
+<p>Koa 是 Express 原班人马基于 <code>ES6</code> 新特性重新开发的框架，主要基于 co 中间件，框架自身不包含任何中间件，很多功能需要借助第三方中间件解决，但是由于其基于 ES6 generator 特性的异步流程控制，解决了 “callback hell” 和麻烦的错误处理问题。</p>
+<p>总结来说，Express是一个功能齐全，开箱即用的集合式框架，比较重。Koa2是一个插件化的轻量框架，功能按需引入。</p>
+<h3 id="2-中间件模型"><a href="#2-中间件模型" class="headerlink" title="2. 中间件模型"></a>2. 中间件模型</h3><h5 id="N1-中间件模型结构差异"><a href="#N1-中间件模型结构差异" class="headerlink" title="N1: 中间件模型结构差异"></a>N1: 中间件模型结构差异</h5><p>Express 的中间件模型为 <code>线型</code>，而 Koa 的中间件模型为 U 型，也可称为 <code>洋葱模型</code> 构造中间件</p>
+<ul>
+<li>Express 线型模型示例：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span>;</span><br><span class="line"></span><br><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  res.write(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  res.set(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  res.write(<span class="string">&quot;world&quot;</span>);</span><br><span class="line">  res.end();</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>Express 中间件有趣的地方：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Express();</span><br><span class="line"><span class="keyword">const</span> sleep = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;resolve(<span class="number">1</span>)&#125;, <span class="number">2000</span>))</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;f1 start -&gt;&#x27;</span>);</span><br><span class="line">  next();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;f1 end &lt;-&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;f2 start -&gt;&#x27;</span>);</span><br><span class="line">  next();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;f2 end &lt;-&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">f3</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//await sleep();</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;f3 service...&#x27;</span>);</span><br><span class="line">  res.send(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.use(f1);</span><br><span class="line">app.use(f2);</span><br><span class="line">app.use(f3);</span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, f3)</span><br><span class="line">app.listen(port, <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Example app listening on port <span class="subst">$&#123;port&#125;</span>!`</span>))</span><br></pre></td></tr></table></figure>
+
+<p>控制台执行 curl localhost:3000 输出如下，有点迷惑了，不是线性吗？为什么和我们上面讲 Koa 的输出顺序是一致呢？不也是洋葱模型吗？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f1 start -&gt;</span><br><span class="line">f2 start -&gt;</span><br><span class="line">f3 service...</span><br><span class="line">f2 end &lt;-</span><br><span class="line">f1 end &lt;-</span><br></pre></td></tr></table></figure>
+
+<p>少年，先莫及，再看一段代码。<br>上面我们的 f3 函数其中注释了一条代码 await sleep() 延迟执行，现在让我们打开这个注释。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">f3</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">await</span> sleep(); <span class="comment">// 改变之处</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;f3 service...&#x27;</span>);</span><br><span class="line">  res.send(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台再次执行 curl localhost:3000，发现顺序发生了改变，上游中间件并没有等待 f3 函数执行完毕，就直接执行了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f1 start -&gt;</span><br><span class="line">f2 start -&gt;</span><br><span class="line">f2 end &lt;-</span><br><span class="line">f1 end &lt;-</span><br><span class="line">f3 service...</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Express 中间件实现是基于 Callback 回调函数同步的，它不会去等待异步（Promise）完成，这也解释了为什么上面的 Demo 我加上异步操作，顺序就被改变了。<br>在 Koa 的中间件机制中使用 Async/Await（背后全是 Promise）以同步的方式来管理异步代码，它则可以等待异步操作。</p>
+</blockquote>
+<ul>
+<li>Koa 洋葱模型示例：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> Koa <span class="keyword">from</span> <span class="string">&quot;koa&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  ctx.body = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">  <span class="keyword">await</span> next();</span><br><span class="line">  ctx.body += <span class="string">&quot;world&quot;</span>;</span><br><span class="line">&#125;);</span><br><span class="line">app.use(<span class="keyword">async</span> (ctx) =&gt; &#123;</span><br><span class="line">  ctx.set(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>可以看到，Express 实现同样的功能，要比 Koa 多一步。</p>
+<h5 id="N2-洋葱模型实际应用场景"><a href="#N2-洋葱模型实际应用场景" class="headerlink" title="N2: 洋葱模型实际应用场景"></a>N2: 洋葱模型实际应用场景</h5><ul>
+<li>使用 node 服务监控一个请求的响应时间<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 中间件源码部分</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">options</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;koaRouterPathAggregate, ...baseOptions &#125; = options;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> metrics = <span class="keyword">new</span> BaseServiceMetrics(baseOptions);</span><br><span class="line">    <span class="keyword">const</span> &#123; entry, exit &#125; = metrics;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> linkObj = entry(ctx);</span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> otherObj = &#123;&#125;;</span><br><span class="line">            <span class="keyword">if</span> (koaRouterPathAggregate) &#123;</span><br><span class="line">                <span class="keyword">const</span> realPath = getKoaRouterPath(ctx, koaRouterPathAggregate);</span><br><span class="line">                <span class="keyword">if</span> (realPath) &#123;</span><br><span class="line">                  otherObj.path = realPath;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            exit(ctx, linkObj, otherObj);</span><br><span class="line">        &#125; <span class="keyword">catch</span>(ex) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(ex);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 服务使用部分</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">const</span> entryObj = entry(req); <span class="comment">// 开始监控统计入口，一般在请求开始时执行</span></span><br><span class="line"> <span class="comment">/* todo 计算业务逻辑</span></span><br><span class="line"><span class="comment"> res.writeHead(200, &#123;&#x27;Content-type&#x27; : &#x27;text/html&#x27;&#125;);</span></span><br><span class="line"><span class="comment"> res.write(&#x27;&lt;h1&gt;Node.js&lt;/h1&gt;&#x27;);</span></span><br><span class="line"><span class="comment"> res.end(&#x27;&lt;p&gt;Hello World&lt;/p&gt;&#x27;);</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> exit(res, entryObj); <span class="comment">// 开始监控统计出口，一般在计算完执行准备返回时执行</span></span><br><span class="line">&#125;).listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>业务逻辑开始前调用 entry，逻辑结束后 调用 exit，内部通过 node 自带的 <code>process.hrtime()</code> 获取到当前时间。</p>
+<ul>
+<li>需要回调下一个中间件的处理结果 (待补充)</li>
+</ul>
+<p>如果 Express 也想实现 Koa 的洋葱模型就比较困难，需要开发者在每一个中间件上都添加回调函数。因此 Express 项目真的很难直接使用 Koa 的中间件机制，怪不得 TJ Holowaychuk 大神也要另起炉灶。</p>
+<h3 id="3-异步方式"><a href="#3-异步方式" class="headerlink" title="3. 异步方式"></a>3. 异步方式</h3><ul>
+<li><p>Express 通过回调实现异步函数，在多个回调、多个中间件中写起来容易逻辑混乱。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// express写法</span></span><br><span class="line">app.get(<span class="string">&quot;/test&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  fs.readFile(<span class="string">&quot;/file1&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      res.status(<span class="number">500</span>).send(<span class="string">&quot;read file1 error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    fs.readFile(<span class="string">&quot;/file2&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        res.status(<span class="number">500</span>).send(<span class="string">&quot;read file2 error&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      res.type(<span class="string">&quot;text/plain&quot;</span>);</span><br><span class="line">      res.send(data);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>Koa 通过 generator 和 async/await 使用同步的写法来处理异步，明显好于 callback 和 promise。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="keyword">await</span> next();</span><br><span class="line">  <span class="keyword">var</span> data = <span class="keyword">await</span> doReadFile();</span><br><span class="line">  ctx.response.type = <span class="string">&quot;text/plain&quot;</span>;</span><br><span class="line">  ctx.response.body = data;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-捕获错误"><a href="#4-捕获错误" class="headerlink" title="4. 捕获错误"></a>4. 捕获错误</h3><ul>
+<li><p>Express 沿用 Node.js 的 Error-First 的模式（第一个参数是 error 对象）来捕获错误。由于Express的中间件时线性流程，所以要处理错误信息就必须把error中间件放到最后。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span> (<span class="params">err, req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(err.stack);</span><br><span class="line">  res.status(<span class="number">500</span>).send(<span class="string">&quot;Something broke!&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>Koa 使用 try/catch 的方式来捕获错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="keyword">if</span> (error.errorCode) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;捕获到异常&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> (ctx.body = errror.msg);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-响应机制"><a href="#5-响应机制" class="headerlink" title="5. 响应机制"></a>5. 响应机制</h3><ul>
+<li>Express 立刻响应（res.json/res.send），上层不能再定义其他处理。</li>
+<li>Koa 中间件执行完之后才响应（ctx.body = xxx），每一层都可以对响应进行自己的处理</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">小鱼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://112.124.32.18:99/2022/11/24/node/%E6%B5%85%E8%B0%88%20Koa%20%E5%92%8C%20Express%20%E7%9A%84%E5%BC%82%E5%90%8C/">http://112.124.32.18:99/2022/11/24/node/%E6%B5%85%E8%B0%88%20Koa%20%E5%92%8C%20Express%20%E7%9A%84%E5%BC%82%E5%90%8C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://112.124.32.18:99" target="_blank">Mercedes</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Node/">Node</a></div><div class="post_share"><div class="social-share" data-image="/img/bg9.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/9.jpg" target="_blank"><img class="post-qr-code-img" src="/img/9.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/11/25/vue/keep-alive%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"><img class="prev-cover" src="/img/bg8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">keep-alive 源码解析</div></div></a></div><div class="next-post pull-right"><a href="/2022/11/24/engineering/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAVite/"><img class="next-cover" src="/img/bg3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">手写一个 Vite</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/11/30/node/Fish-Node%20%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" title="Fish-Node 使用文档"><img class="cover" src="/img/bg9.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-30</div><div class="title">Fish-Node 使用文档</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E4%B8%A4%E8%80%85%E7%9A%84%E8%81%94%E7%B3%BB"><span class="toc-number">1.</span> <span class="toc-text">1. 两者的联系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%BA%8C%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">2. 二者的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.0.1.</span> <span class="toc-text">1. 架构设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.0.2.</span> <span class="toc-text">2. 中间件模型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#N1-%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E5%B7%AE%E5%BC%82"><span class="toc-number">2.0.2.0.1.</span> <span class="toc-text">N1: 中间件模型结构差异</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#N2-%E6%B4%8B%E8%91%B1%E6%A8%A1%E5%9E%8B%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.0.2.0.2.</span> <span class="toc-text">N2: 洋葱模型实际应用场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%BC%82%E6%AD%A5%E6%96%B9%E5%BC%8F"><span class="toc-number">2.0.3.</span> <span class="toc-text">3. 异步方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%8D%95%E8%8E%B7%E9%94%99%E8%AF%AF"><span class="toc-number">2.0.4.</span> <span class="toc-text">4. 捕获错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%93%8D%E5%BA%94%E6%9C%BA%E5%88%B6"><span class="toc-number">2.0.5.</span> <span class="toc-text">5. 响应机制</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 小鱼</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a  target="_blank" rel="noopener" href="http://beian.miit.gov.cn">赣ICP备2022000963号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'LM9Y6HlevqNlrrVeF9Mbadg6-MdYXbMMI',
+      appKey: '1yB8S3wvOq2gPniXYl2blEnj',
+      avatar: 'monsterid',
+      serverURLs: 'https://lm9y6hle.api.lncldglobal.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7650221472" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="小鱼,想买,718" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
